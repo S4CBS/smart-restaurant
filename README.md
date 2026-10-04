@@ -59,12 +59,8 @@ npm run dev
 ## 👥 Команда проекта и Contributors
 
 - **Панов Алексей** ([@S4CBS](https://github.com/S4CBS)) — Fullstack / Backend разработчик
-- **CodeckDok** ([@CodeckDok](https://github.com/CodeckDok)) — Contributor
-- **Faust-hi** ([@Faust-hi](https://github.com/Faust-hi)) — Contributor
-- **saintssinner** ([@saintssinner](https://github.com/saintssinner)) — Contributor
-- **cruddykot** ([@cruddykot](https://github.com/cruddykot)) — Contributor
-- **Стяжкин Данелбек** (@DanilaSty) — Project Manager / Team Lead
-- **Назаров Илья** (@kuradikotto) — Системный аналитик
-- **Лучинин Иван** (@luchinin07) — QA Engineer / Backend разработчик
-- **Михайлова София** (@V37VET) — UI/UX Дизайнер
+- **Стяжкин Данелбек** (@DanilaSty, [@CodeckDok](https://github.com/CodeckDok)) — Project Manager / Team Lead
+- **Назаров Илья** (@kuradikotto, [@cruddykot](https://github.com/cruddykot)) — Системный аналитик
+- **Лучинин Иван** (@luchinin07, [@Faust-hi](https://github.com/Faust-hi)) — QA Engineer / Backend разработчик
+- **Михайлова София** (@V37VET, [@saintssinner](https://github.com/saintssinner)) — UI/UX Дизайнер
 
