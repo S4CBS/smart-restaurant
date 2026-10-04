@@ -16,6 +16,20 @@
 - **База данных**: PostgreSQL, Prisma ORM
 - **Тестирование**: Vitest, Supertest
 
+## 🚀 Быстрый старт (планируемый запуск)
+
+```bash
+# Клонирование репозитория
+git clone https://github.com/S4CBS/smart-restaurant.git
+cd smart-restaurant
+
+# Установка зависимостей
+npm install
+
+# Запуск в режиме разработки
+npm run dev
+```
+
 ## 📂 Структура репозитория
 
 - `2026-09-27-smart-restaurant-design.md` — детальное техническое задание и дизайн-документ архитектуры, ролей и модели данных.
