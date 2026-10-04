@@ -42,11 +42,15 @@ npm run dev
 - `2026-09-27-smart-restaurant-design.md` — детальное техническое задание и дизайн-документ архитектуры, ролей и модели данных.
 - `ПЗ1_раздаточные_материалы_интегрированное_занятие_1 (4).docx` — материалы и бланки практического занятия №1 (анализ аналогов, критерии, карточка продукта).
 
-## 👥 Команда проекта
+## 👥 Команда проекта и Contributors
 
+- **Панов Алексей** ([@S4CBS](https://github.com/S4CBS)) — Fullstack / Backend разработчик
+- **CodeckDok** ([@CodeckDok](https://github.com/CodeckDok)) — Contributor
+- **Faust-hi** ([@Faust-hi](https://github.com/Faust-hi)) — Contributor
+- **saintssinner** ([@saintssinner](https://github.com/saintssinner)) — Contributor
+- **cruddykot** ([@cruddykot](https://github.com/cruddykot)) — Contributor
 - **Стяжкин Данелбек** (@DanilaSty) — Project Manager / Team Lead
 - **Назаров Илья** (@kuradikotto) — Системный аналитик
-- **Панов Алексей** (@S4CBS) — Fullstack / Backend разработчик
 - **Лучинин Иван** (@luchinin07) — QA Engineer / Backend разработчик
 - **Михайлова София** (@V37VET) — UI/UX Дизайнер
-- **CodeckDok** ([@CodeckDok](https://github.com/CodeckDok)) — Contributor
+
