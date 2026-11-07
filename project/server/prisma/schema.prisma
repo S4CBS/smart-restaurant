@@ -17,6 +17,11 @@ enum Role {
   admin
 }
 
+enum CodePurpose {
+  register
+  reset
+}
+
 enum TableShape {
   round
   square
@@ -44,8 +49,42 @@ model User {
   reservations    Reservation[]
   layoutRevisions LayoutRevision[]
   auditLogs       AuditLog[]
+  sessions        Session[]
 
   @@map("users")
+}
+
+model Session {
+  id               String    @id @default(uuid()) @db.Uuid
+  userId           String    @map("user_id") @db.Uuid
+  refreshTokenHash String    @unique @map("refresh_token_hash") @db.VarChar(128)
+  userAgent        String?   @map("user_agent") @db.VarChar(300)
+  ip               String?   @db.VarChar(64)
+  createdAt        DateTime  @default(now()) @map("created_at")
+  lastUsedAt       DateTime  @default(now()) @map("last_used_at")
+  expiresAt        DateTime  @map("expires_at")
+  revokedAt        DateTime? @map("revoked_at")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@map("sessions")
+}
+
+model VerificationCode {
+  id         String      @id @default(uuid()) @db.Uuid
+  email      String      @db.VarChar(120)
+  purpose    CodePurpose
+  codeHash   String      @map("code_hash") @db.VarChar(128)
+  payload    Json?
+  attempts   Int         @default(0)
+  expiresAt  DateTime    @map("expires_at")
+  consumedAt DateTime?   @map("consumed_at")
+  createdAt  DateTime    @default(now()) @map("created_at")
+
+  @@index([email, purpose])
+  @@index([expiresAt])
+  @@map("verification_codes")
 }
 
 model Floor {
