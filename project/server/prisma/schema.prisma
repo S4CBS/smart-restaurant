@@ -1,0 +1,153 @@
+// Prisma schema for Smart Restaurant (Умный ресторан)
+// СУБД: PostgreSQL
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+enum Role {
+  guest
+  constructor
+  manager
+  admin
+}
+
+enum TableShape {
+  round
+  square
+  rect
+}
+
+enum ReservationStatus {
+  confirmed
+  completed
+  cancelled
+  no_show
+}
+
+model User {
+  id           String        @id @default(uuid()) @db.Uuid
+  name         String        @db.VarChar(120)
+  phone        String        @unique @db.VarChar(30)
+  email        String        @unique @db.VarChar(120)
+  passwordHash String        @map("password_hash") @db.VarChar(255)
+  role         Role          @default(guest)
+  isBlocked    Boolean       @default(false) @map("is_blocked")
+  createdAt    DateTime      @default(now()) @map("created_at")
+  updatedAt    DateTime      @updatedAt @map("updated_at")
+
+  reservations    Reservation[]
+  layoutRevisions LayoutRevision[]
+  auditLogs       AuditLog[]
+
+  @@map("users")
+}
+
+model Floor {
+  id        String   @id @default(uuid()) @db.Uuid
+  number    Int      @unique
+  name      String   @db.VarChar(100)
+  sortOrder Int      @default(0) @map("sort_order")
+  createdAt DateTime @default(now()) @map("created_at")
+
+  zones           Zone[]
+  layoutRevisions LayoutRevision[]
+
+  @@map("floors")
+}
+
+model Zone {
+  id           String   @id @default(uuid()) @db.Uuid
+  floorId      String   @map("floor_id") @db.Uuid
+  name         String   @db.VarChar(100)
+  type         String   @default("main") @db.VarChar(50) // main, veranda, vip, bar
+  description  String?  @db.Text
+  photoUrl     String?  @map("photo_url") @db.VarChar(500)
+  polygon      Json     // JSONB массив вершин [{x: 0, y: 0}, ...]
+  color        String   @default("#e2e8f0") @db.VarChar(20)
+  isActive     Boolean  @default(true) @map("is_active")
+  isReservable Boolean  @default(true) @map("is_reservable")
+  sortOrder    Int      @default(0) @map("sort_order")
+
+  floor  Floor   @relation(fields: [floorId], references: [id], onDelete: Cascade)
+  tables Table[]
+
+  @@index([floorId])
+  @@map("zones")
+}
+
+model Table {
+  id           String     @id @default(uuid()) @db.Uuid
+  zoneId       String     @map("zone_id") @db.Uuid
+  number       String     @db.VarChar(20)
+  seats        Int        @default(2)
+  shape        TableShape @default(square)
+  x            Float      @default(0)
+  y            Float      @default(0)
+  w            Float      @default(80)
+  h            Float      @default(80)
+  rotation     Float      @default(0) // Угол поворота в градусах 0-360
+  isReservable Boolean    @default(true) @map("is_reservable")
+
+  zone         Zone          @relation(fields: [zoneId], references: [id], onDelete: Cascade)
+  reservations Reservation[]
+
+  @@index([zoneId])
+  @@map("tables")
+}
+
+model LayoutRevision {
+  id        String   @id @default(uuid()) @db.Uuid
+  floorId   String   @map("floor_id") @db.Uuid
+  authorId  String   @map("author_id") @db.Uuid
+  revision  Int      @default(1)
+  layout    Json     // Полный JSONB-снимок схемы этажа со всеми зонами и столами
+  comment   String?  @db.VarChar(255)
+  createdAt DateTime @default(now()) @map("created_at")
+
+  floor  Floor @relation(fields: [floorId], references: [id], onDelete: Cascade)
+  author User  @relation(fields: [authorId], references: [id], onDelete: Restrict)
+
+  @@index([floorId, revision])
+  @@map("layout_revisions")
+}
+
+model Reservation {
+  id          String            @id @default(uuid()) @db.Uuid
+  tableId     String            @map("table_id") @db.Uuid
+  userId      String            @map("user_id") @db.Uuid
+  startTime   DateTime          @map("start_time")
+  endTime     DateTime          @map("end_time")
+  guestsCount Int               @default(2) @map("guests_count")
+  status      ReservationStatus @default(confirmed)
+  comment     String?           @db.Text
+  createdAt   DateTime          @default(now()) @map("created_at")
+  cancelledAt DateTime?         @map("cancelled_at")
+
+  table Table @relation(fields: [tableId], references: [id], onDelete: Restrict)
+  user  User  @relation(fields: [userId], references: [id], onDelete: Restrict)
+
+  // Индекс для мгновенного поиска пересечения броней по столу и времени
+  @@index([tableId, startTime, endTime, status])
+  @@index([userId])
+  @@map("reservations")
+}
+
+model AuditLog {
+  id         String   @id @default(uuid()) @db.Uuid
+  userId     String?  @map("user_id") @db.Uuid
+  action     String   @db.VarChar(100) // "PUBLISH_LAYOUT", "CANCEL_RESERVATION", "MARK_NO_SHOW"
+  entityType String   @map("entity_type") @db.VarChar(50)
+  entityId   String?  @map("entity_id") @db.VarChar(100)
+  payload    Json?
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@map("audit_logs")
+}
