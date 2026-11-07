@@ -1,0 +1,67 @@
+<mxfile host="app.diagrams.net" modified="2026-11-07T00:00:00.000Z" agent="dsh" version="24.7.17">
+  <diagram id="ER Model" name="ER Model">
+    <mxGraphModel dx="1587" dy="1123" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1587" pageHeight="1123" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="title" value="ER-диаграмма (нотация вороньей лапки) — «Умный ресторан»" style="text;html=1;align=left;verticalAlign=middle;fontSize=17;fontStyle=1;fontColor=#1E1913;" vertex="1" parent="1">
+          <mxGeometry x="50" y="18" width="700" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="user" value="&lt;b&gt;Пользователь&lt;/b&gt;&lt;br&gt;&lt;b&gt;PK&lt;/b&gt; id&lt;br&gt;email · телефон · имя&lt;br&gt;пароль · роль · блокировка" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFDF8;strokeColor=#274A3A;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="80" y="180" width="260" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="session" value="&lt;b&gt;Сессия&lt;/b&gt;&lt;br&gt;&lt;b&gt;PK&lt;/b&gt; id&lt;br&gt;токен · устройство · IP&lt;br&gt;срок · отзыв" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFDF8;strokeColor=#274A3A;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="400" y="180" width="250" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="code" value="&lt;b&gt;Код подтверждения&lt;/b&gt;&lt;br&gt;&lt;b&gt;PK&lt;/b&gt; id&lt;br&gt;email · назначение · хэш&lt;br&gt;срок · попытки" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFDF8;strokeColor=#274A3A;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="720" y="180" width="250" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="audit" value="&lt;b&gt;Аудит&lt;/b&gt;&lt;br&gt;&lt;b&gt;PK&lt;/b&gt; id&lt;br&gt;действие · сущность&lt;br&gt;идентификатор · данные · дата" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFDF8;strokeColor=#274A3A;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1040" y="180" width="250" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="floor" value="&lt;b&gt;Этаж&lt;/b&gt;&lt;br&gt;&lt;b&gt;PK&lt;/b&gt; id&lt;br&gt;номер · название · порядок" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFDF8;strokeColor=#274A3A;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="80" y="450" width="250" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="zone" value="&lt;b&gt;Зона&lt;/b&gt;&lt;br&gt;&lt;b&gt;PK&lt;/b&gt; id&lt;br&gt;название · тип · полигон&lt;br&gt;активность · бронируемость" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFDF8;strokeColor=#274A3A;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="400" y="450" width="250" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="table" value="&lt;b&gt;Стол&lt;/b&gt;&lt;br&gt;&lt;b&gt;PK&lt;/b&gt; id&lt;br&gt;номер · мест · форма&lt;br&gt;координаты · поворот · бронируемость" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFDF8;strokeColor=#274A3A;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="720" y="450" width="260" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="reservation" value="&lt;b&gt;Бронь&lt;/b&gt;&lt;br&gt;&lt;b&gt;PK&lt;/b&gt; id&lt;br&gt;начало · конец · гостей&lt;br&gt;статус · комментарий" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFDF8;strokeColor=#274A3A;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1040" y="450" width="250" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="revision" value="&lt;b&gt;Ревизия схемы&lt;/b&gt;&lt;br&gt;&lt;b&gt;PK&lt;/b&gt; id&lt;br&gt;номер · снимок · комментарий&lt;br&gt;дата" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFDF8;strokeColor=#274A3A;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="400" y="750" width="260" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="legend" value="&lt;b&gt;Легенда&lt;/b&gt;&lt;br&gt;PK — первичный ключ сущности&lt;br&gt;Две черты — ровно один («1»)&lt;br&gt;Кружок и черта — ноль или один («0..1»)&lt;br&gt;Кружок и «лапка» — ноль или много («0..N»)&lt;br&gt;Черта и «лапка» — один или много («1..N»)" style="rounded=0;html=1;fillColor=#FFFDF8;strokeColor=#D8CBB4;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;fontSize=9;" vertex="1" parent="1">
+          <mxGeometry x="60" y="890" width="260" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="r1" value="открывает" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;startArrow=ERmandOne;endArrow=ERzeroToMany;startSize=16;endSize=16;strokeColor=#3E3830;fontSize=9;labelBackgroundColor=#FFFDF8;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="user" target="session">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r2" value="совершает" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;startArrow=ERmandOne;endArrow=ERzeroToMany;startSize=16;endSize=16;strokeColor=#3E3830;fontSize=9;labelBackgroundColor=#FFFDF8;exitX=0.5;exitY=0;entryX=0.5;entryY=0;" edge="1" parent="1" source="user" target="audit">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="210" y="120" /><mxPoint x="1165" y="120" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="r3" value="создаёт" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;startArrow=ERmandOne;endArrow=ERzeroToMany;startSize=16;endSize=16;strokeColor=#3E3830;fontSize=9;labelBackgroundColor=#FFFDF8;exitX=0;exitY=0.5;entryX=0.5;entryY=1;" edge="1" parent="1" source="user" target="reservation">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="35" y="255" /><mxPoint x="35" y="660" /><mxPoint x="1165" y="660" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="r4" value="содержит" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;startArrow=ERmandOne;endArrow=ERzeroToMany;startSize=16;endSize=16;strokeColor=#3E3830;fontSize=9;labelBackgroundColor=#FFFDF8;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="floor" target="zone">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r5" value="включает" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;startArrow=ERmandOne;endArrow=ERzeroToMany;startSize=16;endSize=16;strokeColor=#3E3830;fontSize=9;labelBackgroundColor=#FFFDF8;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="zone" target="table">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r6" value="принимает" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;startArrow=ERmandOne;endArrow=ERzeroToMany;startSize=16;endSize=16;strokeColor=#3E3830;fontSize=9;labelBackgroundColor=#FFFDF8;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="table" target="reservation">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="r7" value="имеет" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;startArrow=ERmandOne;endArrow=ERzeroToMany;startSize=16;endSize=16;strokeColor=#3E3830;fontSize=9;labelBackgroundColor=#FFFDF8;exitX=0.5;exitY=1;entryX=0.3;entryY=0;" edge="1" parent="1" source="floor" target="revision">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="205" y="700" /><mxPoint x="478" y="700" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="r8" value="публикует" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;startArrow=ERmandOne;endArrow=ERzeroToMany;startSize=16;endSize=16;strokeColor=#3E3830;fontSize=9;labelBackgroundColor=#FFFDF8;exitX=0;exitY=0.3;entryX=0;entryY=0.5;" edge="1" parent="1" source="user" target="revision">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="20" y="225" /><mxPoint x="20" y="825" /><mxPoint x="400" y="825" /></Array></mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
