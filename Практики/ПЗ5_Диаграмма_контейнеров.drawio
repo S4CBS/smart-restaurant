@@ -1,0 +1,73 @@
+<mxfile host="app.diagrams.net" modified="2026-11-07T00:00:00.000Z" agent="dsh" version="24.7.17">
+  <diagram id="c4-container" name="C4 Container">
+    <mxGraphModel dx="1587" dy="1123" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1587" pageHeight="1123" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="boundary" value="&lt;b&gt;Умный ресторан&lt;/b&gt; [Программная система]" style="rounded=0;html=1;dashed=1;dashPattern=8 5;fillColor=none;strokeColor=#6B6152;align=left;verticalAlign=top;spacingLeft=14;spacingTop=10;fontStyle=1;fontSize=13;fontColor=#3E3830;" vertex="1" parent="1">
+          <mxGeometry x="300" y="60" width="1040" height="840" as="geometry" />
+        </mxCell>
+        <mxCell id="guest" value="&lt;b&gt;Гость&lt;/b&gt;&lt;br&gt;[Человек]&lt;br&gt;Бронирует стол, управляет бронями" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E8EEF5;strokeColor=#3B5A7A;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="50" y="140" width="200" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="manager" value="&lt;b&gt;Менеджер&lt;/b&gt;&lt;br&gt;[Человек]&lt;br&gt;Журнал зала, перенос и no-show" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E8EEF5;strokeColor=#3B5A7A;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="50" y="340" width="200" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="architect" value="&lt;b&gt;Конструктор схем&lt;/b&gt;&lt;br&gt;[Человек]&lt;br&gt;Планировка зала и ревизии" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#E8EEF5;strokeColor=#3B5A7A;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="50" y="540" width="200" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="spa" value="&lt;b&gt;Веб-клиент&lt;/b&gt;&lt;br&gt;[Контейнер: React 19 + TypeScript, предварительно]&lt;br&gt;Интерфейсы гостя, менеджера и конструктора" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F1F5F0;strokeColor=#274A3A;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="370" y="320" width="240" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="api" value="&lt;b&gt;API-сервер&lt;/b&gt;&lt;br&gt;[Контейнер: Node.js + Express, предварительно]&lt;br&gt;Права, доступность, брони, Socket.IO" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F1F5F0;strokeColor=#274A3A;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="720" y="320" width="240" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="db" value="&lt;b&gt;База данных&lt;/b&gt;&lt;br&gt;[Контейнер: PostgreSQL + Prisma, предварительно]&lt;br&gt;Схемы JSONB, брони, пользователи, аудит" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F4EEE3;strokeColor=#8C6836;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="720" y="560" width="240" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="redis" value="&lt;b&gt;Кэш и очередь&lt;/b&gt;&lt;br&gt;[Контейнер: Redis, предварительно]&lt;br&gt;Блокировки на 5 минут, очередь писем" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F4EEE3;strokeColor=#8C6836;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="720" y="740" width="240" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="mailer" value="&lt;b&gt;Отправщик писем&lt;/b&gt;&lt;br&gt;[Контейнер: Node.js + Nodemailer, предварительно]&lt;br&gt;Разбирает очередь, шлёт письма" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#F1F5F0;strokeColor=#274A3A;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1020" y="740" width="240" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="gmail" value="&lt;b&gt;Gmail&lt;/b&gt;&lt;br&gt;[Внешняя система]&lt;br&gt;Доставляет письма гостю" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#EFE9DD;strokeColor=#8C8272;dashed=1;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;fontSize=11;" vertex="1" parent="1">
+          <mxGeometry x="1400" y="560" width="180" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="title" value="C4. Диаграмма контейнеров — «Умный ресторан»" style="text;html=1;align=left;verticalAlign=middle;fontSize=18;fontStyle=1;fontColor=#1E1913;" vertex="1" parent="1">
+          <mxGeometry x="50" y="0" width="560" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="legend" value="&lt;b&gt;Легенда&lt;/b&gt;&lt;br&gt;Синий — человек&lt;br&gt;Зелёный — контейнер&lt;br&gt;Песочный — хранилище&lt;br&gt;Серый пунктир — внешняя система&lt;br&gt;Стрелка — кто начинает и что делает" style="rounded=0;html=1;fillColor=#FFFDF8;strokeColor=#D8CBB4;align=left;verticalAlign=top;spacingLeft=10;spacingTop=8;fontSize=10;" vertex="1" parent="1">
+          <mxGeometry x="50" y="700" width="210" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="e1" value="Открывает&lt;br&gt;бронирование" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#3E3830;fontSize=10;labelBackgroundColor=#FFFDF8;exitX=1;exitY=0.5;entryX=0;entryY=0.25;" edge="1" parent="1" source="guest" target="spa">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e2" value="Открывает&lt;br&gt;журнал зала" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#3E3830;fontSize=10;labelBackgroundColor=#FFFDF8;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="manager" target="spa">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" value="Открывает&lt;br&gt;схему" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#3E3830;fontSize=10;labelBackgroundColor=#FFFDF8;exitX=1;exitY=0.5;entryX=0;entryY=0.75;" edge="1" parent="1" source="architect" target="spa">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e4" value="Запросы к API&lt;br&gt;[HTTPS/JSON]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#3E3830;fontSize=10;labelBackgroundColor=#FFFDF8;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="spa" target="api">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" value="Читает и пишет&lt;br&gt;схемы и брони [SQL]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#3E3830;fontSize=10;labelBackgroundColor=#FFFDF8;exitX=0.6;exitY=1;entryX=0.6;entryY=0;" edge="1" parent="1" source="api" target="db">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e6" value="Блокировки&lt;br&gt;и очередь [RESP]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#3E3830;fontSize=10;labelBackgroundColor=#FFFDF8;exitX=0;exitY=0.55;entryX=0;entryY=0.5;" edge="1" parent="1" source="api" target="redis">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="668" y="402" /><mxPoint x="668" y="800" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="e8" value="Забирает задания [RESP]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#3E3830;fontSize=10;labelBackgroundColor=#FFFDF8;exitX=0.5;exitY=0;entryX=0.5;entryY=0;" edge="1" parent="1" source="mailer" target="redis">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1140" y="686" /><mxPoint x="840" y="686" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="e9" value="Отправляет письмо [SMTP]" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#3E3830;fontSize=10;labelBackgroundColor=#FFFDF8;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="mailer" target="gmail">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1330" y="800" /><mxPoint x="1330" y="615" /></Array></mxGeometry>
+        </mxCell>
+        <mxCell id="e10" value="Доставляет письмо гостю" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=block;strokeColor=#3E3830;fontSize=10;labelBackgroundColor=#FFFDF8;exitX=0.5;exitY=0;entryX=0.5;entryY=0;" edge="1" parent="1" source="gmail" target="guest">
+          <mxGeometry relative="1" as="geometry"><Array as="points"><mxPoint x="1490" y="40" /><mxPoint x="150" y="40" /></Array></mxGeometry>
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
