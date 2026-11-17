@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import { ConstructorView } from './modules/constructor/ConstructorView';
 import { BookingView } from './modules/booking/BookingView';
 import { ManagerView } from './modules/manager/ManagerView';
+import { AuthProvider, useAuth } from './auth/AuthContext';
+import { AuthScreen } from './auth/AuthScreen';
+import { SessionsPanel } from './auth/SessionsPanel';
 
 type Tab = 'booking' | 'manager' | 'constructor';
 
@@ -18,9 +21,27 @@ const Mark: React.FC = () => (
   </svg>
 );
 
-export const App: React.FC = () => {
+const roleLabel = (role: string) =>
+  ({ guest: 'гость', manager: 'менеджер', admin: 'администратор', constructor: 'конструктор' }[role] ?? role);
+
+const Shell: React.FC = () => {
+  const { user, ready, logout } = useAuth();
   const [activeTab, setActiveTab] = useState<Tab>('booking');
+  const [sessionsOpen, setSessionsOpen] = useState(false);
   const today = new Date().toLocaleDateString('ru-RU', { day: 'numeric', month: 'long' });
+
+  if (!ready) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-paper text-ink">
+        <div className="flex items-center gap-3">
+          <Mark />
+          <span className="font-serif text-[18px]">Maison Lumière</span>
+        </div>
+      </div>
+    );
+  }
+
+  if (!user) return <AuthScreen />;
 
   return (
     <div className="min-h-screen bg-paper text-ink flex flex-col font-sans">
@@ -67,14 +88,27 @@ export const App: React.FC = () => {
             })}
           </nav>
 
-          <div className="ml-auto hidden items-center gap-6 text-[12px] text-stone-500 md:flex">
-            <span className="tabular-nums">Сегодня, {today}</span>
-            <span className="h-3 w-px bg-stone-300" aria-hidden="true" />
-            <span className="tabular-nums">12:00 — 23:00</span>
-            <span className="h-3 w-px bg-stone-300" aria-hidden="true" />
-            <a href="tel:+74994441017" className="border-b border-stone-300 pb-0.5 text-ink hover:border-amber-600">
-              +7 499 444-10-17
-            </a>
+          <div className="ml-auto flex items-center gap-4 text-[12px] text-stone-500">
+            <span className="hidden tabular-nums xl:inline">Сегодня, {today}</span>
+            <span className="hidden h-3 w-px bg-stone-300 xl:block" aria-hidden="true" />
+            <div className="text-right">
+              <div className="text-[12.5px] leading-tight text-ink">{user.name}</div>
+              <div className="leading-tight">{roleLabel(user.role)}</div>
+            </div>
+            <button
+              type="button"
+              onClick={() => setSessionsOpen(true)}
+              className="rounded-[2px] border border-stone-300 px-2.5 py-1.5 text-stone-700 transition-colors hover:bg-stone-100"
+            >
+              Сессии
+            </button>
+            <button
+              type="button"
+              onClick={() => void logout()}
+              className="rounded-[2px] bg-stone-900 px-3 py-1.5 text-stone-50 transition-colors hover:bg-black"
+            >
+              Выйти
+            </button>
           </div>
         </div>
       </header>
@@ -97,8 +131,16 @@ export const App: React.FC = () => {
           <span className="text-stone-400">Проектная деятельность · PostgreSQL · Prisma · React</span>
         </div>
       </footer>
+
+      <SessionsPanel open={sessionsOpen} onClose={() => setSessionsOpen(false)} />
     </div>
   );
 };
+
+export const App: React.FC = () => (
+  <AuthProvider>
+    <Shell />
+  </AuthProvider>
+);
 
 export default App;
